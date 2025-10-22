@@ -76,9 +76,7 @@ function App() {
                     <span id="dialog_winner">{winner && winner !== 'Draw' ? `Player ${winner} Wins!` : ''}</span>
                     <span id="dialog__message">{winner === 'Draw' ? "It's a Draw!" : ''}</span>
                     {winner && (
-                        <div id="button__restart" onClick={restartGame}>
-                            Restart
-                        </div>
+                        <div><br/><div id="button__restart" onClick={restartGame}>Restart</div></div>
                     )}
                 </div>
                 <div id="game__counter">
