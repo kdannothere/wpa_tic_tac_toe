@@ -1,37 +1,119 @@
 body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
     margin: 0;
-    font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     color: #333;
 }
 
-header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 0;
+.App {
     text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    margin-bottom: 20px;
 }
 
 h1 {
-    margin: 0;
+    color: #007bff;
+    margin-bottom: 10px;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.game__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 15px;
+#game__counter {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #e9ecef;
+}
+
+.game__players {
+    font-weight: bold;
+}
+
+#game__turn {
+    font-style: italic;
+}
+
+#game__board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+    border: 2px solid #333;
+    width: 315px; /* 3*100px + 2*5px gap + 2*2px border */
+    height: 315px;
+    margin-bottom: 20px;
+}
+
+.game__cell {
+    width: 100px;
+    height: 100px;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    font-weight: bold;
     cursor: pointer;
+    border: 1px solid #ccc;
+    transition: background-color 0.2s ease-in-out;
 }
 
-button:hover {
-    background-color: #45a049;
+.game__cell:hover {
+    background-color: #ddd;
+}
+
+.game__cell:empty:hover {
+    background-color: #e0e0e0;
+}
+
+.game__cell:not(:empty) {
+    cursor: not-allowed;
+    background-color: #d0d0d0;
+}
+
+#game__dialog {
+    position: relative; /* For positioning children */
+    margin-bottom: 20px;
+    min-height: 40px; /* To prevent layout shift */
+}
+
+#game__dialog.active {
+    padding: 10px;
+    border: 1px solid #28a745;
+    background-color: #d4edda;
+    color: #155724;
+    border-radius: 5px;
+}
+
+#button__restart {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-block; /* To allow margin-top */
+}
+
+#button__restart:hover {
+    background-color: #0056b3;
 }

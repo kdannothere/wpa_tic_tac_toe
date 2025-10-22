@@ -38,8 +38,7 @@ module.exports = {
       patterns: [
         { from: 'public/manifest.json', to: 'manifest.json' },
         { from: 'public/icon-192x192.svg', to: 'icon-192x192.svg' },
-        // If you have a 512x512 icon, copy that too
-        // { from: 'public/icon-512x512.svg', to: 'icon-512x512.svg' },
+        { from: 'public/icon-512x512.svg', to: 'icon-512x512.svg' },
       ],
     }),
   ],
