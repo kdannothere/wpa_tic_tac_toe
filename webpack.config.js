@@ -1,13 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { InjectManifest } = require('workbox-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'docs'), // Changed output directory to 'docs'
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: '/wpa_tic_tac_toe/', // Set publicPath for GitHub Pages
   },
   module: {
     rules: [
@@ -27,15 +28,23 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      favicon: './public/icon-192x192.svg' // Optional: adds a favicon link
+      favicon: './public/icon-192x192.svg' // This will be correctly linked with publicPath
     }),
     new InjectManifest({
       swSrc: './public/sw.js',
       swDest: 'sw.js',
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'public/manifest.json', to: 'manifest.json' },
+        { from: 'public/icon-192x192.svg', to: 'icon-192x192.svg' },
+        // If you have a 512x512 icon, copy that too
+        // { from: 'public/icon-512x512.svg', to: 'icon-512x512.svg' },
+      ],
+    }),
   ],
   devServer: {
-    static: path.join(__dirname, 'dist'),
+    static: path.join(__dirname, 'docs'), // Changed devServer static path
     historyApiFallback: true, // Important for single-page apps
   },
 };
