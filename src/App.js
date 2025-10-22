@@ -8,6 +8,29 @@ function App() {
     const [currentPlayer, setCurrentPlayer] = React.useState('X');
     const [winner, setWinner] = React.useState(null); // 'X', 'O', 'Draw', or null
     const [scores, setScores] = React.useState({ X: 0, O: 0 });
+    const [installPromptEvent, setInstallPromptEvent] = React.useState(null);
+    const [isStandalone, setIsStandalone] = React.useState(false);
+
+    React.useEffect(() => {
+        // Capture the event that fires when the app is installable
+        const handleInstallPrompt = (event) => {
+            event.preventDefault();
+            setInstallPromptEvent(event);
+        };
+
+        window.addEventListener('beforeinstallprompt', handleInstallPrompt);
+
+        // Check if the app is running in standalone mode
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            setIsStandalone(true);
+        }
+
+        // Cleanup
+        return () => {
+            window.removeEventListener('beforeinstallprompt', handleInstallPrompt);
+        };
+    }, []);
+
 
     const winningLines = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
@@ -58,6 +81,18 @@ function App() {
         setWinner(null);
     };
 
+    const handleInstallClick = () => {
+        if (!installPromptEvent) {
+            return;
+        }
+        // Show the browser's install prompt
+        installPromptEvent.prompt();
+        // We can't use the event again, so clear it
+        installPromptEvent.userChoice.then(() => {
+            setInstallPromptEvent(null);
+        });
+    };
+
     const getStatusMessage = () => {
         if (winner === 'Draw') {
             return "It's a Draw!";
@@ -70,14 +105,17 @@ function App() {
 
     return (
         <div className="App">
+            {installPromptEvent && !isStandalone && (
+                <button id="install__button" onClick={handleInstallClick}>
+                    Install App
+                </button>
+            )}
             <Header />
             <main className="game__body">
                 <div id="game__dialog" className={winner ? 'active' : ''}>
                     <span id="dialog_winner">{winner && winner !== 'Draw' ? `Player ${winner} Wins!` : ''}</span>
                     <span id="dialog__message">{winner === 'Draw' ? "It's a Draw!" : ''}</span>
-                    {winner && (
-                        <div><br/><div id="button__restart" onClick={restartGame}>Restart</div></div>
-                    )}
+                    {winner && (<div id="button__restart" onClick={restartGame}>Restart</div>)}
                 </div>
                 <div id="game__counter">
                     <p className="game__players" id="player_1">Player X: <span id="player_1_value">{scores.X}</span></p>
