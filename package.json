@@ -1,5 +1,5 @@
 {
-  "name": "wpa_tic_tac_toe",
+  "name": "pwa_tic_tac_toe",
   "version": "1.0.0",
   "description": "A web application that utilizes a service worker for offline capabilities.",
   "main": "src/index.js",

@@ -1,8 +1,8 @@
 {
-  "name": "wpa_tic_tac_toe",
-  "short_name": "wpa_tic_tac_toe",
+  "name": "pwa_tic_tac_toe",
+  "short_name": "pwa_tic_tac_toe",
   "description": "A web application that demonstrates the capabilities of a Progressive Web App.",
-  "start_url": "/wpa_tic_tac_toe/index.html",
+  "start_url": "/pwa_tic_tac_toe/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",

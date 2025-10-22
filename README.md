@@ -1,4 +1,4 @@
-# wpa_tic_tac_toe
+# pwa_tic_tac_toe
 
 This project is a web application built using modern web technologies. It is designed to be a Progressive Web App (PWA), providing a seamless user experience with offline capabilities.
 

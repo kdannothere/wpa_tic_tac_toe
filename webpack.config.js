@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'docs'), // Changed output directory to 'docs'
     filename: 'bundle.js',
-    publicPath: '/wpa_tic_tac_toe/', // Set publicPath for GitHub Pages
+    publicPath: '/pwa_tic_tac_toe/', // Set publicPath for GitHub Pages
   },
   module: {
     rules: [
