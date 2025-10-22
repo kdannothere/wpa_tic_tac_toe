@@ -43,7 +43,7 @@ header {
 }
 
 h1 {
-    color: #007bff;
+    color: #7ecd30;
     margin-bottom: 10px;
 }
 
@@ -135,6 +135,7 @@ h1 {
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 100;
+    cursor: default;
 }
 
 #game__dialog.active {
@@ -147,6 +148,7 @@ h1 {
     color: white;
     text-shadow: 1px 1px 3px black;
     margin-bottom: 20px;
+    cursor: default;
 }
 
 #button__restart {
